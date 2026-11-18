@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 
 <html lang="tr">
@@ -66,17 +68,37 @@ button.back{background:#e8ece9;color:#34483e;margin-bottom:15px}
 
 .tile span{font-size:12px;color:#68756f;line-height:1.4}
 
-.hidden{display:none}
+.hidden{display:none!important}
 
-.notice{background:#f0f5f1;border-left:4px solid #648b72;padding:12px;font-size:13px;line-height:1.5;border-radius:5px}
+.notice{background:#f0f5f1;border-left:4px solid #648b72;padding:12px;font-size:13px;line-height:1.5;border-radius:5px;margin:14px 0}
 
 footer{text-align:center;padding:20px;color:#87928c;font-size:12px}
+
+input,select,textarea{width:100%;padding:13px;border:1px solid #d6e0d9;border-radius:9px;font-size:15px;margin:7px 0 15px;background:white;color:#24332d}
+
+textarea{min-height:120px;resize:vertical}
+
+label{font-weight:bold;font-size:14px;color:#34483e}
+
+.request-card{border:1px solid #dce6df;border-radius:12px;padding:15px;margin:12px 0}
+
+.request-card h3{color:#173d32}
+
+.status{display:inline-block;background:#edf2ee;color:#365746;padding:6px 10px;border-radius:20px;font-size:12px;margin:7px 0}
+
+.small{font-size:12px;color:#718078}
+
+.detail{background:#f6f8f6;padding:13px;border-radius:9px;margin:10px 0;line-height:1.6;overflow-wrap:anywhere}
+
+.danger{background:#fff0ef;color:#a33b32}
 
 @media(max-width:420px){
 
 .grid{grid-template-columns:1fr 1fr}
 
 .tile{padding:14px 10px}
+
+.panel{padding:18px}
 
 }
 
@@ -134,6 +156,16 @@ footer{text-align:center;padding:20px;color:#87928c;font-size:12px}
 
 </div>
 
+<div class="choice">
+
+<h3>Danışman paneli</h3>
+
+<p>Test amaçlı gelen danışmanlık taleplerini inceleyin.</p>
+
+<button class="secondary" onclick="openAdmin()">Danışman Olarak Giriş Yap</button>
+
+</div>
+
 </section>
 
 <section id="home" class="panel hidden">
@@ -146,7 +178,7 @@ footer{text-align:center;padding:20px;color:#87928c;font-size:12px}
 
 <div class="grid">
 
-<button class="tile" onclick="openModule('Ücretsiz Danışmanlık','Tadilat öncesinde ihtiyaçlarınızı, yapılacak işleri ve dikkat etmeniz gereken noktaları birlikte değerlendirebileceğiniz bölüm.')">
+<button class="tile" onclick="openConsultation()">
 
 <strong>Ücretsiz Danışmanlık</strong>
 
@@ -210,37 +242,221 @@ footer{text-align:center;padding:20px;color:#87928c;font-size:12px}
 
 <button class="tile" onclick="openModule('Piyasa Araştırması','Sektör profesyonellerinin gönüllü olarak paylaştığı malzeme ve işçilik verileri üzerinden bölgesel piyasa araştırması.')">
 
-<strong>Piyasa Araştırması</strong>
-
-<span>Malzeme ve işçilik piyasasını inceleyin.</span>
+<strong>Piyasa Araştırması</strong><span>Malzeme ve işçilik piyasasını inceleyin.</span>
 
 </button>
 
 <button class="tile" onclick="openModule('Maliyet Hesaplama','İş kalemleri, miktarlar, malzeme ve işçilik giderleri üzerinden maliyet hesaplama aracı.')">
 
-<strong>Maliyet Hesaplama</strong>
-
-<span>Proje maliyetlerinizi hesaplayın.</span>
+<strong>Maliyet Hesaplama</strong><span>Proje maliyetlerinizi hesaplayın.</span>
 
 </button>
 
 <button class="tile" onclick="openModule('Teklif Hazırlama','İş kapsamı, ölçüler, malzeme ve işçilik kalemleriyle düzenli teklif dosyası hazırlama aracı.')">
 
-<strong>Teklif Hazırlama</strong>
-
-<span>Profesyonel teklif dosyaları oluşturun.</span>
+<strong>Teklif Hazırlama</strong><span>Profesyonel teklif dosyaları oluşturun.</span>
 
 </button>
 
 <button class="tile" onclick="openModule('Veri Paylaşımı','Sektör profesyonelleri, kendi tercihleriyle piyasa araştırmasına katkı sağlayabilecek fiyat bilgilerini paylaşabilir.')">
 
-<strong>Gönüllü Veri Paylaşımı</strong>
-
-<span>Piyasa araştırmasına katkı sağlayın.</span>
+<strong>Gönüllü Veri Paylaşımı</strong><span>Piyasa araştırmasına katkı sağlayın.</span>
 
 </button>
 
 </div>
+
+</section>
+
+<!-- ÜCRETSİZ DANIŞMANLIK KARŞILAMA -->
+
+<section id="consultation" class="panel hidden">
+
+<button class="back" onclick="openPanel('home')">← Ev sahibi paneline dön</button>
+
+<h2>Ücretsiz Danışmanlık</h2>
+
+<p>Tadilat sürecinizle ilgili aklınıza takılan soruları bize iletin.</p>
+
+<p>Yapmayı düşündüğünüz çalışmaları, mevcut durumunuzu ve ihtiyaçlarınızı paylaşın. Başvurunuz danışman tarafından incelenerek size yol gösterilmeye çalışılacaktır.</p>
+
+<div class="notice">
+
+<strong>Nasıl ilerliyor?</strong><br>
+
+1. Tadilat türünü seçin.<br>
+
+2. Projenizi ve ihtiyaçlarınızı anlatın.<br>
+
+3. Talebiniz incelensin.<br>
+
+4. Değerlendirme sonucunda sizinle iletişime geçilsin.
+
+</div>
+
+<p class="muted">Danışmanlık ücretsizdir. Profesyonel hizmet almak zorunda değilsiniz.</p>
+
+<button onclick="openRequestForm()">Danışmanlık Talebi Oluştur</button>
+
+</section>
+
+<!-- MÜŞTERİ TALEP FORMU -->
+
+<section id="requestForm" class="panel hidden">
+
+<button class="back" onclick="openConsultation()">← Geri dön</button>
+
+<h2>Danışmanlık Talep Formu</h2>
+
+<p class="muted">Size yardımcı olabilmemiz için aşağıdaki bilgileri doldurun.</p>
+
+<form id="consultationForm" onsubmit="submitRequest(event)">
+
+<label>Adınız ve soyadınız</label>
+
+<input id="customerName" type="text" maxlength="80" required placeholder="Adınız soyadınız">
+
+<label>Telefon numaranız</label>
+
+<input id="customerPhone" type="tel" maxlength="20" required placeholder="05XX XXX XX XX">
+
+<label>İl</label>
+
+<input id="customerCity" type="text" maxlength="50" required placeholder="Örn. Tekirdağ">
+
+<label>İlçe</label>
+
+<input id="customerDistrict" type="text" maxlength="50" required placeholder="Örn. Çorlu">
+
+<label>Danışmanlık konusu</label>
+
+<select id="customerCategory" required>
+
+<option value="">Bir konu seçin</option>
+
+<option>Mutfak tadilatı</option>
+
+<option>Banyo / WC tadilatı</option>
+
+<option>Komple ev tadilatı</option>
+
+<option>Salon / oda yenileme</option>
+
+<option>Elektrik işleri</option>
+
+<option>Su tesisatı</option>
+
+<option>Alçı / boya / alçıpan</option>
+
+<option>Parke / seramik</option>
+
+<option>Mobilya / mutfak dolabı</option>
+
+<option>Diğer</option>
+
+</select>
+
+<label>Projenizi anlatın</label>
+
+<textarea id="customerDescription" maxlength="3000" required placeholder="Yapılmasını düşündüğünüz işleri ve merak ettiklerinizi anlatın..."></textarea>
+
+<div class="notice">
+
+Bu sürüm bir test prototipidir. Girdiğiniz bilgiler yalnızca bu cihazın tarayıcısında saklanır. Gerçek danışmanlık başvurusu gönderilmez. Fotoğraf veya özel belge eklemeyin.
+
+</div>
+
+<label style="font-weight:normal">
+
+<input id="noticeRead" type="checkbox" required style="width:auto;margin-right:7px">
+
+Test amaçlı veri saklama bilgilendirmesini okudum.
+
+</label>
+
+<button type="submit">Test Talebini Oluştur</button>
+
+</form>
+
+</section>
+
+<!-- BAŞVURU SONUCU -->
+
+<section id="requestSuccess" class="panel hidden">
+
+<h2>Talep oluşturuldu</h2>
+
+<div class="notice">
+
+Test başvurunuz bu cihazda kaydedildi. Aşağıdaki başvuru numarasını danışman panelinde görebilirsiniz.
+
+</div>
+
+<h3 id="successNumber"></h3>
+
+<button onclick="openPanel('home')">Ev sahibi paneline dön</button>
+
+<button class="secondary" onclick="openAdmin()">Danışman panelini test et</button>
+
+</section>
+
+<!-- DANIŞMAN ADMIN PANELİ -->
+
+<section id="admin" class="panel hidden">
+
+<button class="back" onclick="showRoles()">← Kullanıcı seçimine dön</button>
+
+<h2>Danışman Yönetim Paneli</h2>
+
+<p class="muted">Gelen danışmanlık taleplerini buradan inceleyebilirsin.</p>
+
+<div class="notice">
+
+<strong>Test paneli:</strong> Bu panel şu anda şifresizdir ve yalnızca aynı cihazın tarayıcısındaki test kayıtlarını gösterir. Gerçek müşteri verisi kullanmayın.
+
+</div>
+
+<div class="grid">
+
+<div class="detail"><strong id="totalRequests">0</strong><br><span class="small">Toplam talep</span></div>
+
+<div class="detail"><strong id="newRequests">0</strong><br><span class="small">Yeni talep</span></div>
+
+</div>
+
+<div id="requestList"></div>
+
+</section>
+
+<!-- TALEP DETAYI -->
+
+<section id="adminDetail" class="panel hidden">
+
+<button class="back" onclick="openAdmin()">← Taleplere dön</button>
+
+<h2>Başvuru Detayı</h2>
+
+<div id="requestDetails"></div>
+
+<label>Başvuru durumu</label>
+
+<select id="requestStatus">
+
+<option value="Yeni">Yeni</option>
+
+<option value="İnceleniyor">İnceleniyor</option>
+
+<option value="Yanıtlandı">Yanıtlandı</option>
+
+</select>
+
+<label>Danışman değerlendirme notu</label>
+
+<textarea id="adminNote" maxlength="3000" placeholder="Değerlendirmeni buraya yaz..."></textarea>
+
+<button onclick="saveAdminChanges()">Değişiklikleri Kaydet</button>
+
+<button class="danger" onclick="deleteRequest()">Test kaydını sil</button>
 
 </section>
 
@@ -252,7 +468,7 @@ footer{text-align:center;padding:20px;color:#87928c;font-size:12px}
 
 <p id="moduleDescription"></p>
 
-<div class="notice">Bu bölümün işlevleri aşamalı olarak geliştirilecektir. Şu an tanıtım ve prototip aşamasındadır.</div>
+<div class="notice">Bu bölümün işlevleri aşamalı olarak geliştirilecektir.</div>
 
 </section>
 
@@ -276,61 +492,327 @@ Bağımsız Tadilat Bilgi ve Danışmanlık Platformu
 
 let activePanel = 'home';
 
+let selectedRequestId = null;
+
 function hideAll(){
 
-  ['welcome','roles','home','pro','module'].forEach(id => {
+[
 
-    document.getElementById(id).classList.add('hidden');
+'welcome','roles','home','pro','consultation',
 
-  });
+'requestForm','requestSuccess','admin','adminDetail','module'
+
+].forEach(id=>{
+
+document.getElementById(id).classList.add('hidden');
+
+});
 
 }
 
 function showRoles(){
 
-  hideAll();
+hideAll();
 
-  document.getElementById('roles').classList.remove('hidden');
+document.getElementById('roles').classList.remove('hidden');
 
 }
 
 function openPanel(type){
 
-  hideAll();
+hideAll();
 
-  activePanel = type;
+activePanel=type;
 
-  document.getElementById(type).classList.remove('hidden');
+document.getElementById(type).classList.remove('hidden');
 
 }
 
-function openModule(title, description){
+function openModule(title,description){
 
-  hideAll();
+hideAll();
 
-  document.getElementById('moduleTitle').textContent = title;
+document.getElementById('moduleTitle').textContent=title;
 
-  document.getElementById('moduleDescription').textContent = description;
+document.getElementById('moduleDescription').textContent=description;
 
-  document.getElementById('module').classList.remove('hidden');
+document.getElementById('module').classList.remove('hidden');
 
 }
 
 function backToPanel(){
 
-  openPanel(activePanel);
+openPanel(activePanel);
 
 }
 
-if ('serviceWorker' in navigator) {
+function openConsultation(){
 
-  window.addEventListener('load', () => {
+hideAll();
 
-    navigator.serviceWorker.register('./sw.js')
+document.getElementById('consultation').classList.remove('hidden');
 
-      .catch(error => console.error('PWA hatası:', error));
+}
 
-  });
+function openRequestForm(){
+
+hideAll();
+
+document.getElementById('requestForm').classList.remove('hidden');
+
+}
+
+function getRequests(){
+
+try{
+
+return JSON.parse(localStorage.getItem('tdm_test_requests') || '[]');
+
+}catch(error){
+
+return [];
+
+}
+
+}
+
+function saveRequests(requests){
+
+localStorage.setItem('tdm_test_requests',JSON.stringify(requests));
+
+}
+
+function submitRequest(event){
+
+event.preventDefault();
+
+const request={
+
+id:'TDM-'+Date.now().toString().slice(-8),
+
+name:document.getElementById('customerName').value.trim(),
+
+phone:document.getElementById('customerPhone').value.trim(),
+
+city:document.getElementById('customerCity').value.trim(),
+
+district:document.getElementById('customerDistrict').value.trim(),
+
+category:document.getElementById('customerCategory').value,
+
+description:document.getElementById('customerDescription').value.trim(),
+
+status:'Yeni',
+
+note:'',
+
+createdAt:new Date().toLocaleString('tr-TR')
+
+};
+
+if(!request.name || !request.phone || !request.city ||
+
+!request.district || !request.category || !request.description){
+
+alert('Lütfen zorunlu alanları doldurun.');
+
+return;
+
+}
+
+const requests=getRequests();
+
+requests.unshift(request);
+
+saveRequests(requests);
+
+document.getElementById('successNumber').textContent='Başvuru No: '+request.id;
+
+hideAll();
+
+document.getElementById('requestSuccess').classList.remove('hidden');
+
+document.getElementById('consultationForm').reset();
+
+}
+
+function openAdmin(){
+
+hideAll();
+
+document.getElementById('admin').classList.remove('hidden');
+
+renderAdmin();
+
+}
+
+function renderAdmin(){
+
+const requests=getRequests();
+
+const list=document.getElementById('requestList');
+
+document.getElementById('totalRequests').textContent=requests.length;
+
+document.getElementById('newRequests').textContent=
+
+requests.filter(r=>r.status==='Yeni').length;
+
+if(requests.length===0){
+
+list.innerHTML='<div class="notice">Henüz danışmanlık talebi bulunmuyor. Önce müşteri ekranından bir test talebi oluştur.</div>';
+
+return;
+
+}
+
+list.innerHTML='';
+
+requests.forEach(request=>{
+
+const card=document.createElement('div');
+
+card.className='request-card';
+
+const title=document.createElement('h3');
+
+title.textContent=request.name;
+
+const category=document.createElement('p');
+
+category.textContent=request.category;
+
+const status=document.createElement('span');
+
+status.className='status';
+
+status.textContent=request.status;
+
+const date=document.createElement('p');
+
+date.className='small';
+
+date.textContent=request.createdAt+' · '+request.id;
+
+const button=document.createElement('button');
+
+button.textContent='Talebi İncele';
+
+button.onclick=()=>openRequestDetail(request.id);
+
+card.append(title,category,status,date,button);
+
+list.appendChild(card);
+
+});
+
+}
+
+function openRequestDetail(id){
+
+const request=getRequests().find(r=>r.id===id);
+
+if(!request)return;
+
+selectedRequestId=id;
+
+hideAll();
+
+const container=document.getElementById('requestDetails');
+
+container.innerHTML='';
+
+const fields=[
+
+['Başvuru numarası',request.id],
+
+['Ad soyad',request.name],
+
+['Telefon',request.phone],
+
+['Konum',request.city+' / '+request.district],
+
+['Konu',request.category],
+
+['Açıklama',request.description],
+
+['Başvuru tarihi',request.createdAt]
+
+];
+
+fields.forEach(field=>{
+
+const item=document.createElement('div');
+
+item.className='detail';
+
+const heading=document.createElement('strong');
+
+heading.textContent=field[0];
+
+const value=document.createElement('div');
+
+value.textContent=field[1];
+
+item.append(heading,value);
+
+container.appendChild(item);
+
+});
+
+document.getElementById('requestStatus').value=request.status;
+
+document.getElementById('adminNote').value=request.note || '';
+
+document.getElementById('adminDetail').classList.remove('hidden');
+
+}
+
+function saveAdminChanges(){
+
+const requests=getRequests();
+
+const index=requests.findIndex(r=>r.id===selectedRequestId);
+
+if(index===-1)return;
+
+requests[index].status=document.getElementById('requestStatus').value;
+
+requests[index].note=document.getElementById('adminNote').value.trim();
+
+saveRequests(requests);
+
+alert('Test kaydı güncellendi.');
+
+openAdmin();
+
+}
+
+function deleteRequest(){
+
+if(!selectedRequestId)return;
+
+if(!confirm('Bu test başvurusunu silmek istiyor musun?'))return;
+
+const requests=getRequests().filter(r=>r.id!==selectedRequestId);
+
+saveRequests(requests);
+
+selectedRequestId=null;
+
+openAdmin();
+
+}
+
+if('serviceWorker' in navigator){
+
+window.addEventListener('load',()=>{
+
+navigator.serviceWorker.register('./sw.js')
+
+.catch(error=>console.error('PWA hatası:',error));
+
+});
 
 }
 
